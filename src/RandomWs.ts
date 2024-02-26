@@ -30,7 +30,7 @@ export default class RandomWs {
 
         const message = JSON.stringify({"message": "random"});
 
-        const sendMessageAfterRandomTime = (id: number) => {
+        const sendMessageAfterRandomTime = (id: number, counter: number) => {
             const wsRecord = this.sockets.find(s => s.id === id);
 
             if (wsRecord == null) {
@@ -38,8 +38,8 @@ export default class RandomWs {
             }
 
             setTimeout(() => {
-                wsRecord.ws.send(message);
-                sendMessageAfterRandomTime(id);
+                wsRecord.ws.send(JSON.stringify({"message": "random", "id": counter}));
+                sendMessageAfterRandomTime(id, counter + 1);
             }, 1000 + Math.random() * 5000);
         }
 
@@ -116,7 +116,7 @@ export default class RandomWs {
 
             ws.send(JSON.stringify({"message": "connected"}));
 
-            sendMessageAfterRandomTime(id);
+            sendMessageAfterRandomTime(id, 1);
         });
     }
 
