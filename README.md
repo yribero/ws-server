@@ -13,4 +13,4 @@ Make sure ts-node is installed (recommended: globally)
 
 # How to run
 
-ts-node src/index.ts 
+`ts-node src/index.ts`
