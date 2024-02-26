@@ -6,7 +6,7 @@ export default class RandomWs {
     private static nextId = 0;
 
     private port: number;
-    private wss: WebSocketServer;
+    private wss: WebSocketServer = null;
 
     private sockets: {
         "id": number,
